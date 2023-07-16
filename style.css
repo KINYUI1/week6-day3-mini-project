@@ -1,0 +1,21 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.allscores{
+    display: flex;
+    font-size: large;
+    gap: 600px;
+    margin-top: 50px;
+}
+p{
+font-size: 1.5rem;
+}
+
+.alienscore{
+    color: red;
+}
+.humanscore{
+    color: green;
+}
