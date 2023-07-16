@@ -1,5 +1,6 @@
 
 const ahull = document.querySelector('#ahull');
+const ahulla = document.querySelector('#ahulla');
 const accuracy = document.querySelector('#aaccuracy');
 const afirepower = document.querySelector('#afirepower');
 const aname = document.querySelector('#aname');
@@ -19,8 +20,8 @@ class Ship{
     
     attack(target){
         if(Math.random() < this.accuracy){
-            console.log(`${this.name} have hit the ${target.name}`);
-            target.hull - this.firepower;
+            console.log(`${this.name} hit the ${target.name}`);
+            target.hull -= this.firepower;
            
         }else{
             console.log(`${this.name} have missed the ${target.name}`);
@@ -65,7 +66,7 @@ for(let alienship of alienShips){
     ahull.textContent = `Hull: ${alienship.hull}`;
     accuracy.textContent = `Accuracy: ${alienship.accuracy}`;
     afirepower.textContent = `Firepower: ${alienship.firepower}`;
-    aname.textContent = `Name: ${alienship.name}`;
+    aname.textContent = `Name: ${alienship.name + (alienShips.indexOf(alienship)+1)}`;
     humanShip.attack(alienship);
     alienship.hull -= humanShip.firepower;
     while((humanShip.hull >0) && (alienship.hull > 0)){
@@ -73,10 +74,9 @@ for(let alienship of alienShips){
         humanShip.hull -= alienship.firepower;
         humanShip.attack(alienship);
         alienship.hull -= humanShip.firepower;
-        console.log(humanShip.hull);
     }
     if(alienship.hull <= 0){
-        
+        ahulla.textContent = `Hull: ${alienship.hull}`;
         let result = window.confirm(`Alien ship ${alienShips.indexOf(alienship)+1} has been destroyed continue?`);
        
         if(result === false){
