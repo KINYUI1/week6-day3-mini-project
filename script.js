@@ -19,7 +19,7 @@ class Ship{
     }
     
     attack(target){
-        if(Math.random() < this.accuracy){
+        if(Math.random() < target.accuracy){
             console.log(`${this.name} hit the ${target.name}`);
             target.hull -= this.firepower;
            
@@ -45,7 +45,7 @@ class AShip extends Ship{
     constructor(){
         const hull = Math.floor(Math.random() * 4) + 3;
         const firepower = Math.floor(Math.random() * 3) + 2;
-        const accuracy = (Math.random() * 0.3) + 0.6;
+        const accuracy = (Math.floor(Math.random() * 3) + 6) / 10;
         super(hull,firepower,accuracy,'Alien ship')
     }
 
@@ -68,10 +68,10 @@ for(let alienship of alienShips){
     afirepower.textContent = `Firepower: ${alienship.firepower}`;
     aname.textContent = `Name: ${alienship.name + (alienShips.indexOf(alienship)+1)}`;
     humanShip.attack(alienship);
-    alienship.hull -= humanShip.firepower;
+    
     while((humanShip.hull >0) && (alienship.hull > 0)){
         alienship.attack(humanShip);
-        humanShip.hull -= alienship.firepower;
+        
         humanShip.attack(alienship);
         alienship.hull -= humanShip.firepower;
     }
